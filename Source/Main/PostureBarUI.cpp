@@ -441,6 +441,9 @@ namespace ER
             if (auto&& entityHandle = feMan->bossHpBars[i].bossHandle; entityHandle != __UINT64_MAX__)
             {
                 auto&& chrIns = g_Hooking->GetChrInsFromHandleFunc(worldChar, &entityHandle);
+                if (chrIns->modelNumber == 0) {
+                    continue;
+                }
                 auto&& previousBossPostureBarData = g_postureUI->bossPostureBars[i];
 
                 if (!chrIns || chrIns->chrModulelBag->staggerModule->staggerMax <= 0.0f)
@@ -512,6 +515,10 @@ namespace ER
             if (auto&& entityHandle = feMan->entityHpBars[i].entityHandle; entityHandle != __UINT64_MAX__)
             {
                 auto&& chrIns = g_Hooking->GetChrInsFromHandleFunc(worldChar, &entityHandle);
+                if (chrIns->modelNumber == 0) {
+                    continue;
+                }
+
                 auto&& previousEntityPostureBarData = g_postureUI->entityPostureBars[i];
 
                 if (!chrIns || chrIns->chrModulelBag->staggerModule->staggerMax <= 0.0f)

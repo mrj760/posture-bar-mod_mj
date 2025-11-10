@@ -128,7 +128,8 @@ bool loadIni()
         //                                        Boss Posture Bar
         //-----------------------------------------------------------------------------------
         BossPostureBarData::drawBars = ini["Boss Posture Bar"].get("DrawBars") == "true";
-        BossPostureBarData::useStaminaForNPC = ini["Boss Posture Bar"].get("UseStaminaForNPC") == "true";
+        //BossPostureBarData::useStaminaForNPC = ini["Boss Posture Bar"].get("UseStaminaForNPC") == "true";
+        BossPostureBarData::useStaminaForNPC = false;
         BossPostureBarData::barWidth = std::stof(ini["Boss Posture Bar"].get("BarWidth"));
         BossPostureBarData::barHeight = std::stof(ini["Boss Posture Bar"].get("BarHeight"));
         BossPostureBarData::resetStaggerTotalTime = std::stof(ini["Boss Posture Bar"].get("ResetStaggerTotalTime"));
@@ -158,7 +159,8 @@ bool loadIni()
         //                                        Entity Posture Bar
         //-----------------------------------------------------------------------------------
         EntityPostureBarData::drawBars = ini["Entity Posture Bar"].get("DrawBars") == "true";
-        EntityPostureBarData::useStaminaForNPC = ini["Entity Posture Bar"].get("UseStaminaForNPC") == "true";
+        //EntityPostureBarData::useStaminaForNPC = ini["Entity Posture Bar"].get("UseStaminaForNPC") == "true";
+        EntityPostureBarData::useStaminaForNPC = false;
         EntityPostureBarData::barWidth = std::stof(ini["Entity Posture Bar"].get("BarWidth"));
         EntityPostureBarData::barHeight = std::stof(ini["Entity Posture Bar"].get("BarHeight"));
         EntityPostureBarData::resetStaggerTotalTime = std::stof(ini["Entity Posture Bar"].get("ResetStaggerTotalTime"));
@@ -412,7 +414,7 @@ void MainThread()
     if (!loadIni())
         return;
 
-    std::this_thread::sleep_for(3s);
+    std::this_thread::sleep_for(10s);
     Logger::log("Starting Main Thread");
     g_D3DRenderer = std::make_unique<D3DRenderer>();
     g_D3DRenderer->loadBarTextures();
